@@ -50,7 +50,7 @@ Enter 1 for pounds\n\
 Enter 2 for liters\n\
 Enter 3 for gallons")
 
-print("First, please enter ounces.")
+print("First, please enter the number of ounces.")
 is_pos = posCheck()
 print("Now, please enter 1, 2, or 3.")
 in_range = oneTwoOrThree()
