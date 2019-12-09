@@ -1,22 +1,13 @@
 def userInp():
-    try:
-        return (int(float(input("Give me an integer. "))))
-    except ValueError:
-        print("You didn't enter a number, please try again.")
+    return input("Give me a number: ")
 
-def validateLoop():
-    valid_check = userInp()
-    while not valid_check:
-        valid_check = userInp()
-    return valid_check
+def loop():
+    val = userInp()
+    pos = 0
+    while val != "0":
+        if int(val) > 0:
+            pos += 1
+        val = userInp()
+    return pos
 
-def posCheck():
-    a = ""
-    while a != int(0):
-        a = validateLoop()
-        print("Thanks!")
-    else:
-        exit()
-    return a
-
-posCheck()
+print("You have entered {0} positive numbers.".format(loop()))
