@@ -1,87 +1,52 @@
-# Initialize the variables
-sum_caps = 0  # Detecting number of capital letters
-sum_lows = 0  # Detecting number of lower case letters
-alpha_to_num = ''  # Translation of letters into numbers
-phone_number = 'a'
+print("This program converts user-given characters to numbers dialed on a phone\n\
+corresponding to that letter.\nMaximum of 10 characters allowed.")
 
-while len(phone_number) != 0:
+char_list = ["0"] * 10
+tmp_list = []
 
-    # Prompt the user to imput variable
-    print('Please enter a phone number or press <ENTER> to exit:')  #  Give user instructions
-    phone_number = input()  # Define the variable #Note: may need to declare this a string later
+def userInput():
+    return input("Please enter characters. ")
 
+def maxCheck():
+    given_string = userInput()
+    while len(given_string) > 10:
+        print("This is too many characters, please try again.")
+        given_string = userInput()
+    return given_string
 
-    # Loop through the string to sum capital letters
-    for counter in range(0, len(phone_number)):
-        char = phone_number[counter]
+def strToList():
+    valid_string = maxCheck()
+    for char in valid_string:
+        tmp_list.append((char).lower())
+    return tmp_list
 
-        # Sum if capital
-        if char.isupper():
-            sum_caps += 1
+def charToNum():
+    tmp_list = strToList()
+    for i in range(0,len(tmp_list)):
+        if tmp_list[i] >= 'a' and tmp_list[i] <= 'c':
+            tmp_list[i] = '2'
+        if tmp_list[i] >= 'd' and tmp_list[i] <= 'f':
+            tmp_list[i] = '3'
+        if tmp_list[i] >= 'g' and tmp_list[i] <= 'i':
+            tmp_list[i] = '4'
+        if tmp_list[i] >= 'j' and tmp_list[i] <= 'l':
+            tmp_list[i] = '5'
+        if tmp_list[i] >= 'm' and tmp_list[i] <= 'o':
+            tmp_list[i] = '6'
+        if tmp_list[i] >= 'p' and tmp_list[i] <= 's':
+            tmp_list[i] = '7'
+        if tmp_list[i] >= 't' and tmp_list[i] <= 'v':
+            tmp_list[i] = '8'
+        if tmp_list[i] >= 'w' and tmp_list[i] <= 'z':
+            tmp_list[i] = '9'
+    return tmp_list
 
-    # Loop through the string to get sum of lower letters
-    for counter in range(0, len(phone_number)):
-        char = phone_number[counter]
+def addToList():
+    tmp_list = charToNum()
+    for i in range(0,len(tmp_list)):
+        char_list[i] = tmp_list[i]
+    return char_list
 
-        # Sum if lower
-        if char.islower():
-            sum_lows += 1
-
-
-    # Loop through the string to convert letters to numbers
-    for counter in range(0, len(phone_number)):
-        char = phone_number[counter]
-
-        
-        if char >= 'A' and char <= 'C':
-            alpha_to_num += '2'
-
-        elif char >= 'a' and char <= 'c':
-            alpha_to_num += '2'
-
-        elif char >= 'D' and char <= 'F':
-            alpha_to_num += '3'
-
-        elif char >= 'd' and char <= 'f':
-            alpha_to_num += '3'
-
-        elif char >= 'G' and char <= 'I':
-            alpha_to_num += '4'
-
-        elif char >= 'g' and char <= 'i':
-            alpha_to_num += '4'
-
-        elif char >= 'J' and char <= 'L':
-            alpha_to_num += '5'
-
-        elif char >= 'j' and char <= 'l':
-            alpha_to_num += '5'
-
-        elif char >= 'M' and char <= 'O':
-            alpha_to_num += '6'
-
-        elif char >= 'm' and char <= 'o':
-            alpha_to_num += '6'
-
-        elif char >= 'P' and char <= 'S':
-            alpha_to_num += '7'
-
-        elif char >= 'p' and char <= 's':
-            alpha_to_num += '7'
-
-        elif char >= 'T' and char <= 'V':
-            alpha_to_num += '8'
-
-        elif char >= 't' and char <= 'v':
-            alpha_to_num += '8'
-
-        elif char >= 'W' and char <= 'Z':
-            alpha_to_num += '9'
-
-        elif char >= 'w' and char <= 'z':
-            alpha_to_num += '9'
-
-        else:
-            alpha_to_num += char
-
-    print(alpha_to_num)
+final_list = addToList()
+print("The phone number is 1-" + ''.join(final_list[:3]) + "-"\
++ ''.join(final_list[3:6]) + "-" + ''.join(final_list[6:]))
